@@ -53,6 +53,7 @@ namespace LabStat
                 SumAverage += Table[i, 1];
             }
             double average = SumAverage / heightArray;
+            Console.WriteLine($"Average some bullshit = {average}");
             Console.WriteLine($"Average magic calculated value = {average}"); //Awesome code, don't touch this string.
             Console.ReadKey();
 
