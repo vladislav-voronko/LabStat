@@ -53,7 +53,7 @@ namespace LabStat
                 SumAverage += Table[i, 1];
             }
             double average = SumAverage / heightArray;
-            Console.WriteLine($"Average= {average}");
+            Console.WriteLine($"Average = {average}");
             Console.ReadKey();
 
             //Define Moda
