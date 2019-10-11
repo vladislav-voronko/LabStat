@@ -45,16 +45,72 @@ namespace LabStat
                 {30,26,-82,-31,71}
             };
             int SumAverage = 0;
-            for (var j = 0; j < 30; j++)
+            for (var i = 0; i < 30; i++)
             {
-                SumAverage += Table[j, 1];
+                SumAverage += Table[i, 1];
             }
             double average = SumAverage / 30f;
             Console.WriteLine($"Average= {average}");
             Console.ReadKey();
 
-           
+            //Define Moda
+            int[,] ModaTable = new int[30,5];
 
+            for (var i = 0; i < 30; i++)
+                for (var j = 0; j < 5; j++)
+                {
+                    ModaTable[i,j] = Table[i,j];
+                }
+            int counter;
+            int currentNumber;
+            int[,] result = new int[2, 10];
+            for (var i = 0; i < 2; i++)
+            {
+                for (var j = 0; j < 10; j++)
+                    result[i, j] = 0;
+            }
+            for (var i = 0; i < 30; i++)
+            {
+                counter = 1;
+                currentNumber = ModaTable[i, 1];
+                ModaTable[i, 1] = 0;
+                if (currentNumber != 0)
+                {
+                    for (var j = i + 1; j < 30; j++)
+                    {
+                        if (currentNumber == ModaTable[j, 1])
+                        {
+                            counter++;
+                            ModaTable[j, 1] = 0;
+                        }
+
+                    }
+                }
+
+                if (currentNumber != 0)
+                {
+                    if (result[1, 0] < counter)
+                    {
+                        result[0, 0] = currentNumber;
+                        result[1, 0] = counter;
+                    }
+                    else
+                    if(result[1, 0] == counter)
+                    {
+                        result[0, 1] = currentNumber;
+                        result[1, 1] = counter;
+                    }
+                }
+            }
+            int moda = 1;
+            if (result[1, 0] == result[1, 1])
+            {
+                moda = 2;
+                Console.WriteLine($"Moda = {moda}, values = {result[0, 0]}; {result[0, 1]}, frequency = {result[1, 0]}");
+            }
+            else
+                Console.WriteLine($"Moda = {moda}, value = {result[0, 0]}, frequency = {result[1, 0]}");
+            Console.ReadKey();
         }        
     }
 }
