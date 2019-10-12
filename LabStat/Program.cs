@@ -14,7 +14,7 @@ namespace LabStat
 
         static void Main(string[] args)
         {
-            int[,] Table =new int[heightArray, widthArray]
+            int[,] Table = new int[heightArray, widthArray]
             {
                 {1,12,-41,-26,55},
                 {2,14,-37,14,54},
@@ -53,26 +53,26 @@ namespace LabStat
                 SumAverage += Table[i, 1];
             }
             double average = SumAverage / heightArray;
-            Console.WriteLine($"Average some bullshit = {average}");
-            Console.WriteLine($"Average magic calculated value = {average}"); //Awesome code, don't touch this string.
+            Console.WriteLine($"Average value = {average}");
             Console.ReadKey();
+            DefineModa(Table);
+        }
 
-            //Define Moda
-            int[,] ModaTable = new int[heightArray,5];
+        public static void DefineModa(int[,]Table)
+        {
+            int[,] ModaTable = new int[heightArray, 5];
 
             for (var i = 0; i < heightArray; i++)
                 for (var j = 0; j < 5; j++)
                 {
-                    ModaTable[i,j] = Table[i,j];
+                    ModaTable[i, j] = Table[i, j];
                 }
             int counter;
             int currentNumber;
-            int[,] result = new int[2, 10];
-            for (var i = 0; i < 2; i++)
-            {
-                for (var j = 0; j < 10; j++)
-                    result[i, j] = 0;
-            }
+            int Moda;
+            List<ModaResult> T = new List<ModaResult>();
+            T.Add(new ModaResult());
+           
             for (var i = 0; i < heightArray; i++)
             {
                 counter = 1;
@@ -87,33 +87,33 @@ namespace LabStat
                             counter++;
                             ModaTable[j, 1] = 0;
                         }
-
                     }
-                }
+                    for (var t = 0; t < T.Count; t++)
+                    {
+                        if (T[t].frequency == 0 || T[t].frequency < counter)
+                        {
+                            T[t].value = currentNumber;
+                            T[t].frequency = counter;
+                            break;
+                        }
 
-                if (currentNumber != 0)
-                {
-                    if (result[1, 0] < counter)
-                    {
-                        result[0, 0] = currentNumber;
-                        result[1, 0] = counter;
-                    }
-                    else
-                    if(result[1, 0] == counter)
-                    {
-                        result[0, 1] = currentNumber;
-                        result[1, 1] = counter;
+                        if (T[t].frequency == counter)
+                        {
+                            T.Add(new ModaResult() { value = currentNumber, frequency = counter });
+                            break;
+                        }
                     }
                 }
             }
-            int moda = 1;
-            if (result[1, 0] == result[1, 1])
+            for (var i = 0; i < T.Count; i++)
             {
-                moda = 2;
-                Console.WriteLine($"Moda = {moda}, values = {result[0, 0]}; {result[0, 1]}, frequency = {result[1, 0]}");
+                if (T[0].frequency != T[i].frequency)
+                    T.RemoveAt(i);
             }
-            else
-                Console.WriteLine($"Moda = {moda}, value = {result[0, 0]}, frequency = {result[1, 0]}");
+            Moda = T.Count;
+            Console.WriteLine($"Moda = {Moda}");
+            foreach (ModaResult item in T)
+                Console.WriteLine($"Value = {item.value} Frequency = {item.frequency}");
             Console.ReadKey();
         }
     }
