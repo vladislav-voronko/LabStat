@@ -56,6 +56,7 @@ namespace LabStat
             Console.WriteLine($"Average value = {average}");
             Console.ReadKey();
             DefineModa(Table);
+            DefineVariation(Table, average);
         }
 
         public static void DefineModa(int[,]Table)
@@ -114,6 +115,50 @@ namespace LabStat
             Console.WriteLine($"Moda = {Moda}");
             foreach (ModaResult item in T)
                 Console.WriteLine($"Value = {item.value} Frequency = {item.frequency}");
+            Console.ReadKey();
+        }
+
+        public static void DefineVariation(int[,] Table, double average)
+        {
+            int temp;
+            double dispersion = 0;
+            double standartDeviation = 0;
+            double averageLinearDeviation = 0;
+            double coefficientOscillation = 0;
+            double coefficientVariation = 0;
+            int[,] VariationTable = new int[heightArray,5];
+
+            for (var i = 0; i < heightArray; i++)
+                for (var j = 0; j < 5; j++)
+                {
+                    VariationTable[i, j] = Table[i, j];
+                }
+            for (var i = 0; i < heightArray-1; i++)
+                for (var j = i + 1; j < heightArray; j++)
+                {
+                    if (VariationTable[i, 1] > VariationTable[j, 1])
+                    {
+                        temp = VariationTable[j, 1];
+                        VariationTable[j, 1] = VariationTable[i, 1];
+                        VariationTable[i, 1] = temp;
+                    }
+                }
+            int median = (VariationTable[14, 1] + VariationTable[15, 1]) / 2;
+            int rangeVariation = VariationTable[29, 1] - VariationTable[0, 1];
+            for(var i = 0; i < heightArray; i++)
+            {
+                dispersion += Math.Pow((VariationTable[i, 1] - average),2);
+            }
+            dispersion = dispersion / heightArray - 1;
+            standartDeviation = Math.Sqrt(dispersion);
+            for (var i = 0; i < heightArray; i++)
+            {
+                averageLinearDeviation += (VariationTable[i, 1] - average);
+            }
+            averageLinearDeviation = averageLinearDeviation / heightArray;
+            coefficientOscillation = rangeVariation / average;
+            coefficientVariation = standartDeviation / average;
+            Console.WriteLine($"Median = {median}\nRange of variation = {rangeVariation}\nDispertion = {dispersion}\nStandart deviation = {standartDeviation}\nAverage linear deviation = {averageLinearDeviation}\nOscillation coefficient = {coefficientOscillation}\nVariation coefficient = {coefficientVariation}");
             Console.ReadKey();
         }
     }
