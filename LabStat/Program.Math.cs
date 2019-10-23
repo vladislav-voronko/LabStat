@@ -6,62 +6,14 @@ using System.Threading.Tasks;
 
 namespace LabStat
 {
-    class Program
+    public partial class Program
     {
-        private static int n = 1;
         private const int widthArray = 5;
         private const int heightArray = 30;
 
-        static void Main(string[] args)
+        public static void DefineModa(int[,] Table)
         {
-            int[,] Table = new int[heightArray, widthArray]
-            {
-                {1,12,-41,-26,55},
-                {2,14,-37,14,54},
-                {3,8,-10,11,51},
-                {4,24,-72,-62,51},
-                {5,3,-10,-20,47},
-                {6,7,-19,-25,43},
-                {7,8,-20,38,43},
-                {8,19,-62,-51,42},
-                {9,19,-64+n,10,50},
-                {10,26,-78,-27,62},
-                {11,22+n,-77,-16,73},
-                {12,26,-83,-30,70},
-                {13,14,-42,31+n,75},
-                {14,26,-86+n,-90,70},
-                {15,5+n,-14,-23,69},
-                {16,13,-28,-46,61},
-                {17,8,-36,-88,57},
-                {18,27,-75,-86,55},
-                {19,12,-36+n,-40,49},
-                {20,12,-31,-64,63},
-                {21,25,-76,-48,62},
-                {22,17,-56,-10,73},
-                {23,12+n,-40,25+n,76},
-                {24,28,-78,-76,88},
-                {25,7,-13,-14,88},
-                {26,3,-14,-55,87},
-                {27,5,-11,-14,82},
-                {28,16,-56,-55+n,77},
-                {29,23,-72,-34,75},
-                {30,26,-82,-31,71}
-            };
-            int SumAverage = 0;
-            for (var i = 0; i < heightArray; i++)
-            {
-                SumAverage += Table[i, 1];
-            }
-            double average = SumAverage / heightArray;
-            Console.WriteLine($"Average value = {average}");
-            Console.ReadKey();
-            DefineModa(Table);
-            DefineVariation(Table, average);
-        }
-
-        public static void DefineModa(int[,]Table)
-        {
-            int[,] ModaTable = new int[heightArray, 5];
+            int[,] ModaTable = new int[heightArray, widthArray];
 
             for (var i = 0; i < heightArray; i++)
                 for (var j = 0; j < 5; j++)
@@ -73,7 +25,7 @@ namespace LabStat
             int Moda;
             List<ModaResult> T = new List<ModaResult>();
             T.Add(new ModaResult());
-           
+
             for (var i = 0; i < heightArray; i++)
             {
                 counter = 1;
@@ -126,14 +78,14 @@ namespace LabStat
             double averageLinearDeviation = 0;
             double coefficientOscillation = 0;
             double coefficientVariation = 0;
-            int[,] VariationTable = new int[heightArray,5];
+            int[,] VariationTable = new int[heightArray, 5];
 
             for (var i = 0; i < heightArray; i++)
-                for (var j = 0; j < 5; j++)
+                for (var j = 0; j < widthArray; j++)
                 {
                     VariationTable[i, j] = Table[i, j];
                 }
-            for (var i = 0; i < heightArray-1; i++)
+            for (var i = 0; i < heightArray - 1; i++)
                 for (var j = i + 1; j < heightArray; j++)
                 {
                     if (VariationTable[i, 1] > VariationTable[j, 1])
@@ -144,10 +96,10 @@ namespace LabStat
                     }
                 }
             int median = (VariationTable[14, 1] + VariationTable[15, 1]) / 2;
-            int rangeVariation = VariationTable[29, 1] - VariationTable[0, 1];
-            for(var i = 0; i < heightArray; i++)
+            int rangeVariation = VariationTable[29, 1] - VariationTable[0, 1]; //Сделатьотдельный метод
+            for (var i = 0; i < heightArray; i++)
             {
-                dispersion += Math.Pow((VariationTable[i, 1] - average),2);
+                dispersion += Math.Pow((VariationTable[i, 1] - average), 2);
             }
             dispersion = dispersion / heightArray - 1;
             standartDeviation = Math.Sqrt(dispersion);
