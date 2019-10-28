@@ -1,0 +1,26 @@
+﻿<Window x:Class="StatGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StatGUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" x:Name="VarCol" Background="Beige">
+            <RadioButton GroupName="Variables" x:Name="RadX" Content="X" IsChecked="True"/>
+            <RadioButton GroupName="Variables" x:Name="RadY" Content="Y" />
+            <RadioButton GroupName="Variables" x:Name="RadZ" Content="Z" />
+        </StackPanel>
+        <TextBox Grid.Column="1" x:Name="TextBox1" HorizontalAlignment="Left" VerticalAlignment="Top" Background="AliceBlue" Height="50" Width="300" Text="Hello, push the button please)"/>
+        <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="CalcButton" Content="Calculate" Width="100" Height="30" HorizontalAlignment="Left" Click="CalcButton_Click"/>
+    </Grid>
+</Window>

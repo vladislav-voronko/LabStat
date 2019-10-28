@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LabStat
+namespace Mathx
 {
     public class ModaResult
     {
@@ -18,6 +18,5 @@ namespace LabStat
             Value = value;
             Frequency = frequency;
         }
-
     }
 }

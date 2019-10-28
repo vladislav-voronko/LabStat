@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabStat", "LabStat\LabStat.csproj", "{A9028838-F40C-42BC-AB8E-67BA673CF8DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mathx", "Mathx\Mathx.csproj", "{0766D2BE-226F-46AC-95A6-1B474189FC0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatGUI", "StatGUI\StatGUI.csproj", "{62BC38EA-7B59-47D7-A18A-1B951F904BF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A9028838-F40C-42BC-AB8E-67BA673CF8DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A9028838-F40C-42BC-AB8E-67BA673CF8DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A9028838-F40C-42BC-AB8E-67BA673CF8DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A9028838-F40C-42BC-AB8E-67BA673CF8DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0766D2BE-226F-46AC-95A6-1B474189FC0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0766D2BE-226F-46AC-95A6-1B474189FC0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0766D2BE-226F-46AC-95A6-1B474189FC0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0766D2BE-226F-46AC-95A6-1B474189FC0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62BC38EA-7B59-47D7-A18A-1B951F904BF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62BC38EA-7B59-47D7-A18A-1B951F904BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62BC38EA-7B59-47D7-A18A-1B951F904BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62BC38EA-7B59-47D7-A18A-1B951F904BF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
