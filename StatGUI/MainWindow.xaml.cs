@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using StatGUI.ViewModels;
 using static Mathx.Mathx;
 
 namespace StatGUI
@@ -21,9 +22,13 @@ namespace StatGUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowViewModel mainViewModel;
+
         public MainWindow()
         {
             InitializeComponent();
+            mainViewModel = new MainWindowViewModel();
+            DataContext = mainViewModel;
         }
 
         private void CalcButton_Click(object sender, RoutedEventArgs e)
